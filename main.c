@@ -1,24 +1,35 @@
-int Intro()
-{
-    clearScreen();
-    printf("\n\n");
-    printf("\n                                   888888888   888888888 888b     d888  888         888 88 888b   88888 88888      d88888b8        8888888                                 "                     );
-    printf("\n                                   888    888  888       8888b   d8888  888         888 88 8888b  88888 88   88    8d88  888     888                  "                     );     
-    printf("\n                                   888   88    888       88888b.d88888  888         888 88 88888b 88888 88     88 888     888     888               "                  );
-    printf("\n                                   888   8     888888    888Y88888P888  888b        888 88 888Y88b88888 88     88 888     888        88888                    ");
-    printf("\n                                   888d888     888       888 Y888P 888   88b       d88  88 888  Y88b888 88     88 888     888            8b                " );
-    printf("\n                                   888    88   888       888  Y8P  888     88b    d88   88 888    Y8888 88     88 888     888            d8                ");
-    printf("\n                                   888     88  888       888   \"  888       8b  d8     88 888     Y888 88   88   Y88b  d88P       888888b                          "); 
-    printf("\n                                   88888888888 888888888 888       888         b        88 888      888 88888       "\Y888P\                                ");                                                                                              
-    printf("\n\n\n\n");                                                                                                                                                                                                  
-    printf("\n                                              888b     d888  .d88888b.  888b    888  .d88888b.  8888888b.   .d88888b.  888    Y88b   d88P           "); 
-    printf("\n                                              8888b   d8888 d88P\" \"Y88b 8888b   888 d88P\" \"Y88b 888   Y88b d88P\" \"Y88b 888     Y88b d88P      ");       
-    printf("\n                                              88888b.d88888 888     888 88888b  888 888     888 888    888 888     888 888      Y88o88P             "); 
-    printf("\n                                              888Y88888P888 888     888 888Y88b 888 888     888 888   d88P 888     888 888       Y888P              "); 
-    printf("\n                                              888 Y888P 888 888     888 888 Y88b888 888     888 8888888P\"  888     888 888        888              ");  
-    printf("\n                                              888  Y8P  888 888     888 888  Y88888 888     888 888        888     888 888        888               "); 
-    printf("\n                                              888   \"   888 Y88b. .d88P 888   Y8888 Y88b. .d88P 888        Y88b. .d88P 888        888              ");  
-    printf("\n                                              888       888  \"Y88888P\"  888    Y888  \"Y88888P\"  888         \"Y88888P\"  88888888   888         ");       
-    goto_XY(130,40);
-    printf("Pressione qualquer tecla .....");
-    getch();
+#include "tabuleiro.h"
+#include "leitura_localidades.h"
+#include <stdio.h>
+#include "jogador.h"
+
+#define MAX_JOGADORES 100
+int main() {
+    Tabuleiro* tabuleiro = inicializa_tabuleiro();
+    
+    // Lê o arquivo e insere as localidades no tabuleiro
+    ler_localidades(tabuleiro, "localidades.txt");
+
+    // Imprime o tabuleiro
+    imprimir_tabuleiro(tabuleiro);
+    
+    // Liberar memória alocada
+    liberar_tabuleiro(tabuleiro);
+
+    Jogador* jogadores = ler_jogadores();
+    if (jogadores == NULL) {
+        printf("Erro ao ler os jogadores.\n");
+        return 1;
+    }
+
+    printf("||||| JOGADORES EM JOGO |||||\n");
+
+    // Imprimir os jogadores
+    for (int i = 0; i < MAX_JOGADORES && jogadores[i].numero != 0; i++) {
+        printf("Nome: %s, Dinheiro Inicial: %.2f, Número: %d\n", 
+                jogadores[i].nome, jogadores[i].dinheiroinicial, jogadores[i].numero);
+    }
+    printf("Aperte qualquer tecla para iniciar .... \n");
+    getchar();
+    return 0;
+}
