@@ -2,7 +2,7 @@
 #include "localidade.h"
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h> // Adicionado para printf
+#include <stdio.h> 
 
 Localidade* criar_localidade(char* endereco, float custo, float valoraluguel) {
     Localidade* localidade = (Localidade*)malloc(sizeof(Localidade));
