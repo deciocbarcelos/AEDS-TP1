@@ -4,13 +4,12 @@
 #include "jogo.h"
 #include <stdlib.h>
 
-#define MAX_JOGADORES 100
 
 
 int main() {
     Tabuleiro* tabuleiro = inicializa_tabuleiro();
     
-    ler_localidades(tabuleiro, "localidades.txt");
+    leitura_localidades(tabuleiro, "localidades.txt");
 
     imprimir_tabuleiro(tabuleiro);
     

@@ -3,7 +3,7 @@
 
 #include "localidade.h"
 
-typedef struct {
+typedef struct Tabuleiro {
     Localidade* inicio;
 } Tabuleiro;
 
